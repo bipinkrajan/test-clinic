@@ -497,9 +497,17 @@ function renderBranding() {
       <div class="row2">
         <div class="field"><label>Clinic name</label><input data-f="b_name" value="${esc(c.name || "")}"></div>
         <div class="field"><label>Theme colour</label><input data-f="b_color" type="color" value="${esc(c.theme_color || "#245b35")}"></div>
-        <div class="field"><label>OP number prefix</label><input data-f="b_prefix" value="${esc(c.op_prefix || "AY-OP")}"></div>
+        <div class="field"><label>OP prefix (just a prefix, e.g. OP or TC)</label><input data-f="b_prefix" placeholder="OP" value="${esc(c.op_prefix || "")}"></div>
       </div>
       <div class="field"><label>Google review link</label><input data-f="b_review" value="${esc(c.review_url || "")}"></div>
+      <h3 style="margin-top:18px">Clinic contact (shown to patients)</h3>
+      <div class="row2">
+        <div class="field"><label>Phone</label><input data-f="b_phone" value="${esc(c.phone || "")}"></div>
+        <div class="field"><label>WhatsApp</label><input data-f="b_whatsapp" value="${esc(c.whatsapp || "")}"></div>
+        <div class="field"><label>Email</label><input data-f="b_email" value="${esc(c.email || "")}"></div>
+        <div class="field"><label>Google Maps link</label><input data-f="b_map" value="${esc(c.map_url || "")}"></div>
+      </div>
+      <div class="field"><label>Address</label><textarea data-f="b_address">${esc(c.address || "")}</textarea></div>
       <button class="btn block" data-act="save-branding">Save branding</button>
       <button class="btn light" data-act="clinic-qr" style="margin-top:8px">🖨️ Clinic QR Poster (for patients)</button>
       <p class="pin-note">Prints a poster with your clinic name + a QR code patients scan to open the app.</p>
@@ -507,7 +515,8 @@ function renderBranding() {
 }
 async function saveBranding() {
   const f = fields();
-  const body = { name: f.b_name, theme_color: f.b_color, op_prefix: f.b_prefix, review_url: f.b_review };
+  const body = { name: f.b_name, theme_color: f.b_color, op_prefix: f.b_prefix, review_url: f.b_review,
+    phone: f.b_phone, whatsapp: f.b_whatsapp, email: f.b_email, address: f.b_address, map_url: f.b_map };
   if (pendingLogo) body.logo_url = pendingLogo;
   await rest("PATCH", `clinics?id=eq.${S.clinicId}`, { body });
   Object.assign(S.clinic, body);
