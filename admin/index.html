@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#245b35" />
+  <title>Clinic Admin</title>
+  <link rel="icon" href="../assets/logo.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="login" class="login">
+    <div class="login-card">
+      <img class="login-logo" src="../assets/logo.svg" alt="Clinic" />
+      <div class="badge-admin">Admin / Doctor</div>
+      <div class="field"><label>Email</label><input id="email" type="email" autocomplete="username" /></div>
+      <div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" /></div>
+      <p id="login-err" class="err hidden"></p>
+      <button id="login-btn" class="btn">Log in</button>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="app" class="app hidden">
+    <header class="topbar">
+      <img class="topbar-logo" src="../assets/logo.svg" alt="" />
+      <div class="topbar-title">Admin Console</div>
+      <div class="topbar-right">
+        <span id="who" class="who"></span>
+        <button id="tab-patients" class="tab active">Patients</button>
+        <button id="tab-moods" class="tab">Moods <span id="mood-badge" class="tab-badge hidden"></span></button>
+        <button id="tab-offers" class="tab">Offers</button>
+        <button id="tab-staff" class="tab">Staff</button>
+        <button id="tab-branding" class="tab">Branding</button>
+        <button id="logout" class="tab logout">Log out</button>
+      </div>
+    </header>
+    <main id="view" class="view"></main>
+  </div>
+
+  <div id="toast"></div>
+  <!-- QR library (vendored, offline) — exposes window.qrcode for the poster feature -->
+  <script src="../assets/vendor/qrcode-generator.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

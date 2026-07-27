@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#245b35" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Ayurveda Patient Care</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/logo.svg" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ===== Login screen (shown when logged out) ===== -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <img class="login-logo" src="assets/logo.svg" alt="Ayurveda Clinic" />
+      <div class="login-lang">
+        <button id="lgn-en" class="active">English</button>
+        <button id="lgn-ml">മലയാളം</button>
+      </div>
+      <h2 id="login-title">Patient Login</h2>
+      <div class="field"><label id="lbl-op">OP Number</label>
+        <input id="in-op" autocomplete="username" placeholder="AY-OP-2026-00125" /></div>
+      <div class="field"><label id="lbl-pin">PIN</label>
+        <input id="in-pin" type="password" inputmode="numeric" autocomplete="current-password" /></div>
+      <p id="login-error" class="login-error hidden"></p>
+      <button id="login-btn" class="btn">Login</button>
+      <p class="login-hint" id="login-hint">Ask the clinic for your OP number and PIN.</p>
+    </div>
+  </div>
+
+  <!-- App shell: on phones this fills the screen; on desktop it sits in a device frame -->
+  <div class="device">
+    <div class="app">
+
+      <!-- ===== Header ===== -->
+      <header class="app-header">
+        <div class="header-top">
+          <div class="logo-bar"><img class="brand-logo" src="assets/logo.svg" alt="Ayurveda Clinic" /></div>
+          <button id="menu-btn" class="icon-btn" aria-label="menu">☰</button>
+        </div>
+
+        <div class="doctor" id="doctorLine">Doctor</div>
+        <div class="title" id="screenTitle">Patient Dashboard</div>
+
+        <div class="header-controls">
+          <div class="lang-switch">
+            <button id="btn-en" class="active">English</button>
+            <button id="btn-ml">മലയാളം</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== Main scrollable view ===== -->
+      <main class="content" id="view"><!-- screens render here --></main>
+
+      <button id="install-btn" class="install-btn hidden">⬇ Install App</button>
+
+      <!-- ===== Bottom navigation ===== -->
+      <nav class="bottom-nav nav-5">
+        <button class="nav-item active" data-nav="dashboard"><span class="ic">⌂</span><span id="nav-home">Home</span></button>
+        <button class="nav-item" data-nav="ads"><span class="ic">◆</span><span id="nav-ads">Ads</span></button>
+        <button class="nav-item" data-nav="treatment"><span class="ic">☘</span><span id="nav-treatment">Treatment</span></button>
+        <button class="nav-item" data-nav="reminders"><span class="ic">⏰</span><span id="nav-reminders">Reminders</span></button>
+        <button class="nav-item" data-nav="contacts"><span class="ic">☎</span><span id="nav-contacts">Contacts</span></button>
+      </nav>
+    </div>
+
+    <!-- ===== Slide-in menu (all screens) ===== -->
+    <div id="menu-overlay" class="menu-overlay"></div>
+    <aside id="menu" class="menu">
+      <div class="menu-head">Menu</div>
+      <button data-screen="dashboard"><span class="menu-label">Dashboard</span></button>
+      <button data-screen="ads"><span class="menu-label">Ads</span></button>
+      <button data-screen="visit"><span class="menu-label">Registration</span></button>
+      <button data-screen="diagnosis"><span class="menu-label">Diagnosis</span><span class="lock">🔒</span></button>
+      <button data-screen="treatment"><span class="menu-label">Treatment</span></button>
+      <button data-screen="medicine"><span class="menu-label">Medicines</span></button>
+      <button data-screen="reminders"><span class="menu-label">Reminders</span></button>
+      <button data-screen="contacts"><span class="menu-label">Contacts</span></button>
+      <button data-screen="followup"><span class="menu-label">Follow-up</span></button>
+      <button data-screen="review"><span class="menu-label">Review</span></button>
+      <button id="logout-btn" class="menu-logout"><span class="menu-label">Logout</span></button>
+    </aside>
+  </div>
+
+  <!-- ===== Full-screen reminder alarm ===== -->
+  <div id="alarm" class="alarm hidden" role="dialog" aria-modal="true">
+    <button id="alarm-close" class="alarm-x" aria-label="Close">×</button>
+    <div class="alarm-card">
+      <div class="alarm-leaf">🌿</div>
+      <div class="alarm-title" id="alarm-title">Reminder</div>
+      <div class="alarm-label" id="alarm-label"></div>
+      <div class="alarm-time" id="alarm-time"></div>
+      <button class="btn alarm-done" id="alarm-done">Done</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
