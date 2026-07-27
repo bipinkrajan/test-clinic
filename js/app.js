@@ -62,6 +62,13 @@ async function applyBranding() {
   if (b.review_url) CLINIC.googleReviewUrl = b.review_url;
   if (b.theme_color) document.documentElement.style.setProperty("--green", b.theme_color);
   if (b.logo_url) document.querySelectorAll(".login-logo, .brand-logo").forEach((img) => { img.src = b.logo_url; });
+  // Clinic contact — edited in the admin Branding tab, shown on the Contact screen.
+  CLINIC.contact = CLINIC.contact || {};
+  if (b.phone) CLINIC.contact.phone = b.phone;
+  if (b.whatsapp) CLINIC.contact.whatsapp = b.whatsapp;
+  if (b.email) CLINIC.contact.email = b.email;
+  if (b.map_url) CLINIC.contact.mapUrl = b.map_url;
+  if (b.address) CLINIC.contact.address = { en: b.address, ml: b.address };
 }
 
 /* ---------- Login ---------- */
